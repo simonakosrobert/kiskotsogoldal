@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Proba</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+  <app-root></app-root>
+  <h1>Próba vizsgafeladat 1.</h1>
+
+<button onclick="generateNumbers()">
+    Generál
+</button>
+
+<button id="button" onclick="LogPrimes()" disabled>
+  Ellenőriz
+</button>
+
+
+<div class="container">
+<h2>A generált számok:</h2>
+<p id="numbers" ></p>
+<hr>
+<h2 id="talalt"></h2>
+<h2 id="prime"></h2>
+<h2 id="notPrime"></h2>
+
+</div>
+<script>
+    
+    var array = document.getElementById("numbers");
+    let arr = [];
+    
+      
+    function generateNumbers() {
+        arr = Array.from({
+            length: 10
+        }, () => Math.floor(Math.random() * 5000)+ 4);
+
+        array.innerHTML = arr
+
+        document.getElementById("button").disabled = false;
+    }
+
+    function countPrimes(number) {
+      if (number <= 1) {
+        return false;
+      } else {
+        for (let i = 2; i < number; i++) {
+          if (number % i == 0) {
+            return false;
+          }
+        }
+        return true;
+      }
+    }
+
+    
+
+
+    function LogPrimes() {
+	
+	document.getElementById("talalt").innerHTML = ''
+	document.getElementById("prime").innerHTML = ''
+	document.getElementById("notPrime").innerHTML = ''
+	
+    arr.forEach(function (element) {
+      const isPrime = countPrimes(element);
+      if (isPrime) {
+        document.getElementById("talalt").innerHTML = "Talált!";
+
+        document.getElementById("prime").innerHTML += element + "<br>";
+        
+        console.log(`${element} prim szam`);
+      } 
+    });
+
+    const prime = document.getElementById('prime');
+
+    if (prime.childNodes.length === 0) {
+          document.getElementById("notPrime").innerHTML = "Nem talált!";}
+    
+
+  }
+</script>
+</body>
+</html>
